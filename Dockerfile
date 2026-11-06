@@ -15,6 +15,9 @@ RUN git init nginx && \
     git -C nginx fetch --depth=1 https://github.com/nginx/nginx $NGINX_COMMIT && \
     git -C nginx checkout FETCH_HEAD
 
+COPY quic-path-ignore-congestion.patch /
+RUN cd nginx && git apply -v /quic-path-ignore-congestion.patch
+
 RUN cd nginx && \
     ./auto/configure --prefix=/etc/nginx \
     --build=$(git rev-parse HEAD) \
