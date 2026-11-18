@@ -29,6 +29,7 @@ http {
         listen [::]:443 ssl;
         listen [::]:443 quic reuseport;
 
+        http3 off;
         http3_hq on;
 
         add_header Alt-Svc 'h3=":443"; ma=86400';
